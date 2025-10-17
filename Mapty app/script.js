@@ -128,9 +128,10 @@ class App {
         distance &&
         cadence
       ) {
-        this._renderWorkoutMarker(e, lat, lng);
         //If workout is running, create running object
         workout = new Running([lat, lng], distance, duration, cadence);
+
+        this._renderWorkoutMarker(e,workout);
       } else {
         //if valid is not validated
         return alert('Inputs have to be positive numbers!');
@@ -149,10 +150,9 @@ class App {
       ) {
         //If workout is running, create running object
         workout = new Cycling([lat, lng], distance, duration, elevation);
-        console.log(workout);
         
         //Render workout on map as marker
-        this._renderWorkoutMarker(e, lat, lng, workout);
+        this._renderWorkoutMarker(e,workout);
       } else {
         //if valid is not validated
         return alert('Inputs have to be positive numbers!');
@@ -161,7 +161,6 @@ class App {
 
     //Add new object to workout array
     this.#workout.push(workout);
-    console.log(typeof workout.type);
 
 
     //Hide form + clear input fields
@@ -174,9 +173,10 @@ class App {
     form.classList.add('hidden');
   }
 
-  _renderWorkoutMarker(e, lat, lng, workout) {
+  _renderWorkoutMarker(e,workout) {
     e.preventDefault();
-    L.marker([lat, lng])
+    console.log(workout);
+    L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
