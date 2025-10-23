@@ -234,6 +234,15 @@ a:visited {
   .workouts {
     height: 50vh;
   }
+  .workout__title {
+    font-size: 1.4rem;
+  }
+  .workout{
+    gap: 0.
+  }
+  .workout__details{
+    font-size: .5rem;
+  }
   #map{
     height: 50vh;
   }
